@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="index.js"></script>
+
+  <script src="https://apis.google.com/js/api.js"></script>
+  <script>
+    function start() {
+      // 2. Initialize the JavaScript client library.
+      gapi.client.init({
+        'apiKey': 'AIzaSyBpzt6pNvbgnDCKEu2_w7C-hm9Fjd7N3vk',
+        // Your API key will be automatically added to the Discovery Document URLs.
+        'discoveryDocs': ['https://people.googleapis.com/$discovery/rest'],
+        // clientId and scope are optional if auth is not required.
+        'clientId': '665821440125-0608vvefo4h4orqvl2hvvv3r9vvelnoo.apps.googleusercontent.com',
+        'scope': 'profile',
+      }).then(function () {
+        // 3. Initialize and make the API request.
+        return gapi.client.people.people.get({
+          'resourceName': 'people/me',
+          'requestMask.includeField': 'person.names'
+        });
+      }).then(function (response) {
+        console.log(response.result);
+      }, function (reason) {
+        console.log('Error: ' + reason.result.error.message);
+      });
+    };
+    // 1. Load the JavaScript client library.
+    gapi.load('client', start);
+  </script>
+  <title>Search Page</title>
+</head>
+
+<body>
+  <h1>Search Page</h1>
+  <input type="text" id="searchInput" placeholder="Enter search query">
+  
+  <h2>Enter minutes per day to watch videos</h2>
+  <div>
+    <label for="day1">Monday:</label>
+    <input type="number" id="day1" min="0"><br>
+    <label for="day2">Tuesday:</label>
+    <input type="number" id="day2" min="0"><br>
+    <label for="day3">Wednesday:</label>
+    <input type="number" id="day3" min="0"><br>
+    <label for="day4">Thursday:</label>
+    <input type="number" id="day4" min="0"><br>
+    <label for="day5">Friday:</label>
+    <input type="number" id="day5" min="0"><br>
+    <label for="day6">Saturday:</label>
+    <input type="number" id="day6" min="0"><br>
+    <label for="day7">Sunday:</label>
+    <input type="number" id="day7" min="0"><br>
+    <button onclick="search()">Search</button>
+  </div>
+
+  <h2>Results</h2>
+  <div>
+    <p id="daysToWatch">Days to watch all videos: </p>
+    <p id="topWords">Top 5 words: </p>
+  </div>
+</body>
+
+</html>
