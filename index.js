@@ -12,7 +12,7 @@ function search() {
 }
 
 function fetchVideos(query) {
-    const apiKey = 'AIzaSyBpzt6pNvbgnDCKEu2_w7C-hm9Fjd7N3vk'; // Replace with actual API key
+    const apiKey = 'KEY'; // Replace with actual API key
     const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&order=viewCount&q=${encodeURIComponent(query)}&type=video&videoDefinition=high&key=${apiKey}&maxResults=50`;
 
     let allVideos = [];
@@ -63,7 +63,7 @@ function getDailyLimits() {
 }
 
 function getVideoDetails(videoIds) {
-    const apiKey = 'AIzaSyBpzt6pNvbgnDCKEu2_w7C-hm9Fjd7N3vk'; // Replace with your actual API key
+    const apiKey = 'KEY'; // Replace with your actual API key
     const url = `https://www.googleapis.com/youtube/v3/videos?part=contentDetails,snippet&id=${videoIds}&key=${apiKey}`;
 
     return fetch(url)
